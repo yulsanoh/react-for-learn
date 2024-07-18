@@ -1,10 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { Router } from "./Router";
 import { RouterProvider } from "react-router-dom";
+import { theme } from "./theme";
 
-const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
 
 const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
@@ -50,11 +53,23 @@ const GlobalStyle = createGlobalStyle`
     border-collapse: collapse;
     border-spacing: 0;
   }
+  svg {
+    height: auto;
+  }
+  * {
+    box-sizing: border-box;
+  }
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 `;
 
 root.render(
   <React.StrictMode>
-    <GlobalStyle />
-    <RouterProvider router={Router}></RouterProvider>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <RouterProvider router={Router}></RouterProvider>
+    </ThemeProvider>
   </React.StrictMode>
 );
