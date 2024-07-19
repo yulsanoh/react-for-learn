@@ -3,11 +3,10 @@ import ReactDOM from "react-dom/client";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { Router } from "./Router";
 import { RouterProvider } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
 import { theme } from "./theme";
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 
 const GlobalStyle = createGlobalStyle`
   html, body, div, span, applet, object, iframe,
@@ -37,6 +36,8 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     line-height: 1;
+    color: ${(props) => props.theme.white.darker};
+    background-color: black;
   }
   ol, ul {
     list-style: none;
@@ -65,11 +66,15 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+const client = new QueryClient();
+
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <RouterProvider router={Router}></RouterProvider>
-    </ThemeProvider>
+    <QueryClientProvider client={client}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <RouterProvider router={Router}></RouterProvider>
+      </ThemeProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );
