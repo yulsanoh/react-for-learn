@@ -64,6 +64,10 @@ const GlobalStyle = createGlobalStyle`
     color: inherit;
     text-decoration: none;
   }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  
 `;
 
 const client = new QueryClient();

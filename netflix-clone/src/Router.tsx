@@ -14,6 +14,10 @@ export const Router = createBrowserRouter([
         element: <Home />,
       },
       {
+        path: "/movies/:movieId",
+        element: <Home />,
+      },
+      {
         path: "/tv",
         element: <Tv />,
       },
